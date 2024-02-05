@@ -1,2 +1,2 @@
-export const layoutMainContentMarginTop = "5rem";
+export const layoutMainContentMarginTop = "4.5rem";
 export { Layout } from "./Layout";

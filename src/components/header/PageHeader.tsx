@@ -55,6 +55,8 @@ const headerContainerStyles = {
   width: "100%",
   alignItems: "center",
   justifyContent: "space-between",
+  paddingBottom: "0.5rem",
+  borderBottom: "2px solid darkgrey",
   ...mainContainerSize,
 };
 
@@ -101,6 +103,7 @@ export default function Header() {
 
   const menuItems: MenuItem[] = [
     { title: "Sensors", path: Routes.SENSORS, icon: <SensorsIcon /> },
+    { title: "Authorized Users", path: Routes.USERS, icon: <UserIcon /> },
   ];
 
   const handleDrawerToggle = () => {

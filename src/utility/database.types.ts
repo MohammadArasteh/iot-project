@@ -9,7 +9,7 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      "DHT11 Raw Data": {
+      dht11: {
         Row: {
           created_at: string
           Humidity: number | null
@@ -33,7 +33,7 @@ export interface Database {
         }
         Relationships: []
       }
-      "LDR Raw Data": {
+      ldr: {
         Row: {
           created_at: string
           id: number
@@ -57,22 +57,31 @@ export interface Database {
         }
         Relationships: []
       }
-      "PIR Raw Data": {
+      pir: {
         Row: {
           created_at: string
           id: number
+          room_id: string | null
+          status: string | null
+          value: number | null
         }
         Insert: {
           created_at?: string
           id?: number
+          room_id?: string | null
+          status?: string | null
+          value?: number | null
         }
         Update: {
           created_at?: string
           id?: number
+          room_id?: string | null
+          status?: string | null
+          value?: number | null
         }
         Relationships: []
       }
-      "RFID Raw Data": {
+      rfid: {
         Row: {
           code: string | null
           created_at: string

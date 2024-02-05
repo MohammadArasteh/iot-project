@@ -5,6 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline/CssBaseline";
 import { BrowserRouter } from "react-router-dom";
 import { AppRoutesContainer } from "./router/router.tsx";
 import { theme } from "./theme/theme.ts";
+import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <ApplicationProviders direction="ltr" theme={theme}>

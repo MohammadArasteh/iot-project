@@ -1,17 +1,27 @@
 import App from "@/App";
-import { PageNotFoundPage, SensorsPage } from "@/pages";
+import {
+  AuthorizedUsersPage,
+  HumidityRawDataListPage,
+  LdrRawDataListPage,
+  PageNotFoundPage,
+  SensorsPage,
+  TemperatureRawDataListPage,
+} from "@/pages";
 import { Suspense } from "react";
-import { Routes as AppRoutes, Route } from "react-router-dom";
+import { Routes as AppRoutes, Navigate, Route } from "react-router-dom";
 import Routes from "./routes";
 import SignInPage from "@/pages/signInPage";
+import PirRawDataListPage from "@/pages/pirRawDataListPage";
+import RfidRawDataListPage from "@/pages/rfidRawDataListPage";
 
 const AppRoutesContainer = () => {
   return (
     <>
       <AppRoutes>
         <Route path={Routes.HOME} element={<App />}>
+          <Route index element={<Navigate to={Routes.SENSORS} />} />
           <Route
-            index
+            path={Routes.SENSORS}
             element={
               <Suspense fallback={<></>}>
                 <SensorsPage />
@@ -19,10 +29,51 @@ const AppRoutesContainer = () => {
             }
           />
           <Route
-            path={Routes.SENSORS}
+            path={`${Routes.SENSORS}/${Routes.LDR_DATA_TABLE}`}
             element={
               <Suspense fallback={<></>}>
-                <SensorsPage />
+                <LdrRawDataListPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path={`${Routes.SENSORS}/${Routes.TEMPERATURE_DATA_TABLE}`}
+            element={
+              <Suspense fallback={<></>}>
+                <TemperatureRawDataListPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path={`${Routes.SENSORS}/${Routes.HUMIDITY_DATA_TABLE}`}
+            element={
+              <Suspense fallback={<></>}>
+                <HumidityRawDataListPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path={`${Routes.SENSORS}/${Routes.PIR_DATA_TABLE}`}
+            element={
+              <Suspense fallback={<></>}>
+                <PirRawDataListPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path={`${Routes.SENSORS}/${Routes.RFID_DATA_TABLE}`}
+            element={
+              <Suspense fallback={<></>}>
+                <RfidRawDataListPage />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path={Routes.USERS}
+            element={
+              <Suspense fallback={<></>}>
+                <AuthorizedUsersPage />
               </Suspense>
             }
           />

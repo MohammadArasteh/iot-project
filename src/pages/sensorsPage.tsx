@@ -6,6 +6,7 @@ import {
   RfIdIcon,
   TemperatureIcon,
 } from "@/components";
+import Routes from "@/router/routes";
 import { pageMainStyles } from "@/styles";
 import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -28,35 +29,36 @@ export default function SensorsList() {
           Sensors
         </Typography>
       </FlexBox>
-      <FlexBox gap={5} flexWrap={"wrap"}>
+      <FlexBox gap={5} flexWrap={"wrap"} justifyContent={"center"} mt={5}>
         {[
           {
             sensorName: "LDR",
-            route: "sensors/ldr-raw-data",
+            route: Routes.LDR_DATA_TABLE,
             icon: <BrightnessIcon fontSize="large" />,
           },
           {
             sensorName: "PIR",
-            route: "sensors/pir-raw-data",
+            route: Routes.PIR_DATA_TABLE,
             icon: <MotionIcon fontSize="large" />,
           },
           {
             sensorName: "Humidity",
-            route: "sensors/humidity-raw-data",
+            route: Routes.HUMIDITY_DATA_TABLE,
             icon: <HumidityIcon fontSize="large" />,
           },
           {
             sensorName: "Temperature",
-            route: "sensors/temperature-raw-data",
+            route: Routes.TEMPERATURE_DATA_TABLE,
             icon: <TemperatureIcon fontSize="large" />,
           },
           {
             sensorName: "RFID",
-            route: "sensors/rfid-raw-data",
+            route: Routes.RFID_DATA_TABLE,
             icon: <RfIdIcon fontSize="large" />,
           },
-        ].map((i) => (
+        ].map((i, index) => (
           <Box
+            key={index}
             sx={{
               backgroundColor: "#2d3436",
               color: "#a7a7a7",
