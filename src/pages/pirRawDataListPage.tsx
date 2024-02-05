@@ -2,14 +2,11 @@ import { BrightnessIcon, FlexBox, Grid, VerticalBox } from "@/components";
 import { pageMainStyles } from "@/styles";
 import { Database } from "@/utility/database.types";
 import supabase from "@/utility/supabase";
-import { Paper, SxProps, Theme, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { GridColDef, GridPaginationModel } from "@mui/x-data-grid";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function PirRawDataListPage() {
-  const navigate = useNavigate();
-
   const [paginationModel, setPaginationModel] =
     React.useState<GridPaginationModel>({
       page: 0,

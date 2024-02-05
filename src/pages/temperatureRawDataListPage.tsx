@@ -2,36 +2,11 @@ import { BrightnessIcon, FlexBox, Grid, VerticalBox } from "@/components";
 import { pageMainStyles } from "@/styles";
 import { Database } from "@/utility/database.types";
 import supabase from "@/utility/supabase";
-import { Paper, SxProps, Theme, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { GridColDef, GridPaginationModel } from "@mui/x-data-grid";
 import React from "react";
-import { useNavigate } from "react-router-dom";
-
-const getStatusBadgeStyle = (status: string): SxProps<Theme> => {
-  let backgroundColor = "blue.100";
-  let color = "blue.800";
-  switch (status) {
-    case "Danger":
-      backgroundColor = "#fa8b0c15";
-      color = "#fa8b0c";
-      break;
-    case "Idle":
-      backgroundColor = "#00aaff15";
-      color = "#00aaff";
-      break;
-    default:
-      backgroundColor = "grey.100";
-      color = "grey.800";
-  }
-  return {
-    backgroundColor: backgroundColor,
-    color: color,
-  };
-};
 
 export default function TemperatureRawDataListPage() {
-  const navigate = useNavigate();
-
   const [paginationModel, setPaginationModel] =
     React.useState<GridPaginationModel>({
       page: 0,

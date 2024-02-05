@@ -5,7 +5,6 @@ import supabase from "@/utility/supabase";
 import { Paper, SxProps, Theme, Typography } from "@mui/material";
 import { GridColDef, GridPaginationModel } from "@mui/x-data-grid";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 const getStatusBadgeStyle = (status: string): SxProps<Theme> => {
   let backgroundColor = "blue.100";
@@ -30,8 +29,6 @@ const getStatusBadgeStyle = (status: string): SxProps<Theme> => {
 };
 
 export default function LdrRawDataListPage() {
-  const navigate = useNavigate();
-
   const [paginationModel, setPaginationModel] =
     React.useState<GridPaginationModel>({
       page: 0,

@@ -1,11 +1,8 @@
 import { FlexBox } from "@/components";
 import { pageMainStyles } from "@/styles";
 import { Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
 export default function AuthorizedUsersPage() {
-  const navigate = useNavigate();
-
   return (
     <FlexBox flexDirection={"column"} sx={pageMainStyles}>
       <FlexBox
