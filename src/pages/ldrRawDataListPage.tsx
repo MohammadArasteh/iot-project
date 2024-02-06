@@ -36,7 +36,7 @@ export default function LdrRawDataListPage() {
     });
 
   const [rows, setRows] = React.useState<
-    Array<Database["public"]["Tables"]["ldr"]["Row"]>
+    Array<Database["public"]["Tables"]["LDR Raw Data"]["Row"]>
   >([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const totalRowsRef = React.useRef<number>(0);
@@ -45,20 +45,23 @@ export default function LdrRawDataListPage() {
     setIsLoading(true);
 
     const countResult = await supabase
-      .from("ldr")
+      .from("LDR Raw Data")
       .select("*", { count: "exact" });
     totalRowsRef.current = countResult.count || 0;
 
     const from = paginationModel.page * paginationModel.pageSize;
     const to = (paginationModel.page + 1) * paginationModel.pageSize;
-    const result = await supabase.from("ldr").select("*").range(from, to);
+    const result = await supabase
+      .from("LDR Raw Data")
+      .select("*")
+      .range(from, to);
     if (result.data) setRows(result.data);
 
     setIsLoading(false);
   }, [paginationModel]);
 
   const columnDefs = React.useMemo<
-    Array<GridColDef<Database["public"]["Tables"]["ldr"]["Row"]>>
+    Array<GridColDef<Database["public"]["Tables"]["LDR Raw Data"]["Row"]>>
   >(
     () => [
       {
@@ -147,7 +150,7 @@ export default function LdrRawDataListPage() {
             width: "100%",
           }}
         >
-          <Grid<Database["public"]["Tables"]["ldr"]["Row"]>
+          <Grid<Database["public"]["Tables"]["LDR Raw Data"]["Row"]>
             columns={columnDefs}
             rows={rows}
             getRowId={(data) => data.id}

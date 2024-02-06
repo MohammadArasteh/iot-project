@@ -36,7 +36,7 @@ export default function RfidRawDataListPage() {
     });
 
   const [rows, setRows] = React.useState<
-    Array<Database["public"]["Tables"]["rfid"]["Row"]>
+    Array<Database["public"]["Tables"]["RFID Raw Data"]["Row"]>
   >([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const totalRowsRef = React.useRef<number>(0);
@@ -45,20 +45,23 @@ export default function RfidRawDataListPage() {
     setIsLoading(true);
 
     const countResult = await supabase
-      .from("rfid")
+      .from("RFID Raw Data")
       .select("*", { count: "exact" });
     totalRowsRef.current = countResult.count || 0;
 
     const from = paginationModel.page * paginationModel.pageSize;
     const to = (paginationModel.page + 1) * paginationModel.pageSize;
-    const result = await supabase.from("rfid").select("*").range(from, to);
+    const result = await supabase
+      .from("RFID Raw Data")
+      .select("*")
+      .range(from, to);
     if (result.data) setRows(result.data);
 
     setIsLoading(false);
   }, [paginationModel]);
 
   const columnDefs = React.useMemo<
-    Array<GridColDef<Database["public"]["Tables"]["rfid"]["Row"]>>
+    Array<GridColDef<Database["public"]["Tables"]["RFID Raw Data"]["Row"]>>
   >(
     () => [
       {
@@ -155,7 +158,7 @@ export default function RfidRawDataListPage() {
             width: "100%",
           }}
         >
-          <Grid<Database["public"]["Tables"]["rfid"]["Row"]>
+          <Grid<Database["public"]["Tables"]["RFID Raw Data"]["Row"]>
             columns={columnDefs}
             rows={rows}
             getRowId={(data) => data.id}

@@ -14,7 +14,7 @@ export default function PirRawDataListPage() {
     });
 
   const [rows, setRows] = React.useState<
-    Array<Database["public"]["Tables"]["pir"]["Row"]>
+    Array<Database["public"]["Tables"]["PIR Raw Data"]["Row"]>
   >([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const totalRowsRef = React.useRef<number>(0);
@@ -23,20 +23,23 @@ export default function PirRawDataListPage() {
     setIsLoading(true);
 
     const countResult = await supabase
-      .from("pir")
+      .from("PIR Raw Data")
       .select("*", { count: "exact" });
     totalRowsRef.current = countResult.count || 0;
 
     const from = paginationModel.page * paginationModel.pageSize;
     const to = (paginationModel.page + 1) * paginationModel.pageSize;
-    const result = await supabase.from("pir").select("*").range(from, to);
+    const result = await supabase
+      .from("PIR Raw Data")
+      .select("*")
+      .range(from, to);
     if (result.data) setRows(result.data);
 
     setIsLoading(false);
   }, [paginationModel]);
 
   const columnDefs = React.useMemo<
-    Array<GridColDef<Database["public"]["Tables"]["pir"]["Row"]>>
+    Array<GridColDef<Database["public"]["Tables"]["PIR Raw Data"]["Row"]>>
   >(
     () => [
       {
@@ -94,7 +97,7 @@ export default function PirRawDataListPage() {
             width: "100%",
           }}
         >
-          <Grid<Database["public"]["Tables"]["pir"]["Row"]>
+          <Grid<Database["public"]["Tables"]["PIR Raw Data"]["Row"]>
             columns={columnDefs}
             rows={rows}
             getRowId={(data) => data.id}
