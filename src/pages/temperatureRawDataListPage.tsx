@@ -14,7 +14,7 @@ export default function TemperatureRawDataListPage() {
     });
 
   const [rows, setRows] = React.useState<
-    Array<Database["public"]["Tables"]["dht11"]["Row"]>
+    Array<Database["public"]["Tables"]["DHT11 Raw Data"]["Row"]>
   >([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const totalRowsRef = React.useRef<number>(0);
@@ -23,20 +23,23 @@ export default function TemperatureRawDataListPage() {
     setIsLoading(true);
 
     const countResult = await supabase
-      .from("dht11")
+      .from("DHT11 Raw Data")
       .select("*", { count: "exact" });
     totalRowsRef.current = countResult.count || 0;
 
     const from = paginationModel.page * paginationModel.pageSize;
     const to = (paginationModel.page + 1) * paginationModel.pageSize;
-    const result = await supabase.from("dht11").select("*").range(from, to);
+    const result = await supabase
+      .from("DHT11 Raw Data")
+      .select("*")
+      .range(from, to);
     if (result.data) setRows(result.data);
 
     setIsLoading(false);
   }, [paginationModel]);
 
   const columnDefs = React.useMemo<
-    Array<GridColDef<Database["public"]["Tables"]["dht11"]["Row"]>>
+    Array<GridColDef<Database["public"]["Tables"]["DHT11 Raw Data"]["Row"]>>
   >(
     () => [
       {
@@ -125,7 +128,7 @@ export default function TemperatureRawDataListPage() {
             width: "100%",
           }}
         >
-          <Grid<Database["public"]["Tables"]["dht11"]["Row"]>
+          <Grid<Database["public"]["Tables"]["DHT11 Raw Data"]["Row"]>
             columns={columnDefs}
             rows={rows}
             getRowId={(data) => data.id}
